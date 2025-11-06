@@ -60,15 +60,17 @@ export default function FloorCleaner() {
     if (actionType === "production") {
       if (lower.includes("produce") || lower.includes("produced")) {
         try {
-           await addRecord("production", {
-             productId: floorCleaner.id,
-             quantity: amount,
-           });
+          await addRecord("production", {
+            productId: floorCleaner.id,
+            quantity: amount,
+          });
         } catch (error) {
           console.error("Error adding production:", error);
           toast.error("Something went wrong while adding production.");
         }
-       
+      } else {
+        // Handle when phrase doesn't mention production
+        toast.error("Couldn't detect a production command.");
       }
       setActionType(" ");
     }
@@ -90,7 +92,9 @@ export default function FloorCleaner() {
           console.error("Error adding production:", error);
           toast.error("Something went wrong while adding production.");
         }
-        
+      } else {
+        // Handle when phrase doesn't mention production
+        toast.error("Couldn't detect a sales command.");
       }
       setActionType(" ");
     }
@@ -316,7 +320,7 @@ export default function FloorCleaner() {
         <div className="mt-4 flex items-center justify-between font-semibold text-gray-800 pt-3 w-full">
           <span className="">Total Expenses:</span>
 
-          <span className="text-purple-700 text-md md:w-[67%] w-[50%]">
+          <span className="text-purple-700 text-md md:w-[70%] w-[50%]">
             {totalExpense}
           </span>
         </div>

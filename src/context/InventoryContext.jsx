@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 import { createContext, useState, useEffect } from "react";
 import { api } from "../config/axios";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 export const InventoryContext = createContext();
 
@@ -10,6 +10,8 @@ export default function InventoryProvider({ children }) {
   const [productions, setProductions] = useState([]);
   const [sales, setSales] = useState([]);
   const [expenses, setExpenses] = useState([]);
+  const [expenseSummary, setExpenseSummary] = useState([]);
+  const [totalExpenses, setTotalExpenses] = useState(0);
   const [loading, setLoading] = useState(true);
 
   // Fetch all products on load
@@ -38,6 +40,19 @@ export default function InventoryProvider({ children }) {
       console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchExpenseSummary = async () => {
+    try {
+      const res = await api.get("/expenses/summary");
+      if (res.data.success) {
+        setExpenseSummary(res.data.data);
+        setTotalExpenses(res.data.total);
+      }
+    } catch (error) {
+      console.error("Error fetching expense summary:", error);
+      toast.error("Failed to load expense summary");
     }
   };
 
@@ -78,7 +93,13 @@ export default function InventoryProvider({ children }) {
   // Delete the most recent record (production/sales)
   const deleteLatestRecord = async (type, productId) => {
     try {
-      await api.delete(`/${type}s/latest/${productId}`);
+      const route =
+        type === "sales"
+          ? "sales"
+          : type === "production"
+          ? "productions"
+          : null;
+      await api.delete(`/${route}/latest/${productId}`);
       await fetchAllData(); // refresh dashboard data
       toast.success(`Last ${type} record removed successfully.`);
     } catch (error) {
@@ -91,6 +112,7 @@ export default function InventoryProvider({ children }) {
   useEffect(() => {
     fetchProducts();
     fetchAllData();
+    fetchExpenseSummary();
   }, []);
   return (
     <InventoryContext.Provider
@@ -99,9 +121,12 @@ export default function InventoryProvider({ children }) {
         productions,
         sales,
         expenses,
+        expenseSummary,
+        totalExpenses,
         loading,
         fetchProducts,
         fetchAllData,
+        fetchExpenseSummary,
         addRecord,
         deleteExpense,
         deleteLatestRecord,
@@ -111,5 +136,3 @@ export default function InventoryProvider({ children }) {
     </InventoryContext.Provider>
   );
 }
-
-

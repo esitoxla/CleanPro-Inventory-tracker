@@ -8,14 +8,21 @@ import { format, isToday, isYesterday, isThisWeek } from "date-fns";
 import toast from "react-hot-toast";
 import { FaUndoAlt } from "react-icons/fa";
 
-
 const LiquidSoap = () => {
   const [showVoiceModal, setShowVoiceModal] = useState(false);
   const [recognizedText, setRecognizedText] = useState("");
   const [actionType, setActionType] = useState(""); // to know if it's for production, sales, or expense
 
-  const { products, productions, sales, expenses, addRecord, deleteExpense, deleteLatestRecord, loading } =
-    useContext(InventoryContext);
+  const {
+    products,
+    productions,
+    sales,
+    expenses,
+    addRecord,
+    deleteExpense,
+    deleteLatestRecord,
+    loading,
+  } = useContext(InventoryContext);
 
   const liquidSoap = products.find(
     (p) => p.name?.toLowerCase() === "liquid soap"
@@ -60,17 +67,18 @@ const LiquidSoap = () => {
     if (actionType === "production") {
       // Check if it's a production-related phrase
       if (lower.includes("produce") || lower.includes("produced")) {
-
-       try {
-         await addRecord("production", {
-           productId: liquidSoap.id,
-           quantity: amount,
-         });
-         
-       } catch (error) {
-         console.error("Error adding production:", error);
-         toast.error("Something went wrong while adding production.");
-       }
+        try {
+          await addRecord("production", {
+            productId: liquidSoap.id,
+            quantity: amount,
+          });
+        } catch (error) {
+          console.error("Error adding production:", error);
+          toast.error("Something went wrong while adding production.");
+        }
+      } else {
+        // Handle when phrase doesn't mention production
+        toast.error("Couldn't detect a production command.");
       }
       setShowVoiceModal(false);
     }
@@ -86,15 +94,17 @@ const LiquidSoap = () => {
           return;
         }
         try {
-         await addRecord("sales", {
-           productId: liquidSoap.id,
-           quantity: amount,
-         }); 
+          await addRecord("sales", {
+            productId: liquidSoap.id,
+            quantity: amount,
+          });
         } catch (error) {
           console.error("Error adding production:", error);
           toast.error("Something went wrong while adding production.");
         }
-        
+      } else {
+        // Handle when phrase doesn't mention production
+        toast.error("Couldn't detect a sales command!");
       }
       setShowVoiceModal(false);
     }
@@ -321,7 +331,7 @@ const LiquidSoap = () => {
         <div className="mt-4 flex items-center justify-between font-semibold text-gray-800 pt-3 w-full">
           <span className="">Total Expenses:</span>
 
-          <span className="text-purple-700 text-md md:w-[75%] w-[50%]">
+          <span className="text-purple-700 text-md md:w-[77%] w-[50%]">
             {totalExpense}
           </span>
         </div>

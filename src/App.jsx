@@ -3,18 +3,19 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import './App.css'
 import Dashboard from './layout/Dashboard';
 import LiquidSoap from './components/LiquidSoap';
-import HomePage from './pages/HomePage';
 import FloorCleaner from './components/FloorCleaner';
 import Bleach from './components/Bleach';
 import GlassCleaner from './components/GlassCleaner';
 import Softener from './components/Softener';
 import { Toaster } from 'react-hot-toast';
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      Component: HomePage
+      Component: LoginPage,
     },
     {
       path: "/dashboard",
@@ -22,23 +23,27 @@ function App() {
       children: [
         {
           index: true,
-          Component: LiquidSoap
+          Component: LiquidSoap,
         },
         {
           path: "floor",
-          Component: FloorCleaner
+          Component: FloorCleaner,
         },
         {
           path: "bleach",
-          Component: Bleach
+          Component: Bleach,
         },
         {
           path: "glass",
-          Component: GlassCleaner
+          Component: GlassCleaner,
         },
         {
           path: "softener",
-          Component: Softener
+          Component: Softener,
+        },
+        {
+          path: "home",
+          Component: HomePage,
         },
       ],
     },
@@ -46,7 +51,7 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
       <Toaster
         position="top-right"
         toastOptions={{

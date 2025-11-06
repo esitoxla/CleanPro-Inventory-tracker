@@ -62,6 +62,9 @@ export default function Bleach() {
           console.error("Error adding production:", error);
           toast.error("Something went wrong while adding production.");
         }
+      } else {
+        // Handle when phrase doesn't mention production
+        toast.error("Couldn't detect a production command.");
       }
       setActionType(" ");
     }
@@ -74,12 +77,15 @@ export default function Bleach() {
           toast.error("Sales can not be more than production!");
           return;
         }
-       try {
-         await addRecord("sales", { productId: bleach.id, quantity: amount });
-       } catch (error) {
-        console.error("Error adding production:", error);
-        toast.error("Something went wrong while adding production.");
-       }
+        try {
+          await addRecord("sales", { productId: bleach.id, quantity: amount });
+        } catch (error) {
+          console.error("Error adding production:", error);
+          toast.error("Something went wrong while adding production.");
+        }
+      } else {
+        // Handle when phrase doesn't mention production
+        toast.error("Couldn't detect a sales command.");
       }
       setActionType(" ");
     }

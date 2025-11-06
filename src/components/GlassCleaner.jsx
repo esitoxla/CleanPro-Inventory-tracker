@@ -55,16 +55,19 @@ export default function GlassCleaner() {
 
     if (actionType === "production") {
      if (lower.includes("produce") || lower.includes("produced")) {
-        try {
-          await addRecord("production", {
-            productId: glassCleaner.id,
-            quantity: amount,
-          });
-        } catch (error) {
-          console.error("Error adding production:", error);
-          toast.error("Something went wrong while adding production.");
-        }
-      }
+       try {
+         await addRecord("production", {
+           productId: glassCleaner.id,
+           quantity: amount,
+         });
+       } catch (error) {
+         console.error("Error adding production:", error);
+         toast.error("Something went wrong while adding production.");
+       }
+     } else {
+       // Handle when phrase doesn't mention production
+       toast.error("Couldn't detect a production command.");
+     }
       setShowVoiceModal(false);
       setActionType(" ");
     }
@@ -77,14 +80,17 @@ export default function GlassCleaner() {
          return;
        }
        try {
-        await addRecord("sales", {
-          productId: glassCleaner.id,
-          quantity: amount,
-        });
+         await addRecord("sales", {
+           productId: glassCleaner.id,
+           quantity: amount,
+         });
        } catch (error) {
-        console.error("Error adding production:", error);
-        toast.error("Something went wrong while adding production.");
+         console.error("Error adding production:", error);
+         toast.error("Something went wrong while adding production.");
        }
+     } else {
+       // Handle when phrase doesn't mention production
+       toast.error("Couldn't detect a sales command.");
      }
       setShowVoiceModal(false);
     }
@@ -302,9 +308,9 @@ export default function GlassCleaner() {
 
         {/* Total Expense Summary */}
         <div className="mt-4 flex items-center justify-between font-semibold text-gray-800 pt-3 w-full">
-          <span className="md:w-[32%]">Total Expenses:</span>
+          <span className="">Total Expenses:</span>
 
-          <span className="text-cyan-700 text-md md:w-[68%] w-[50%]">
+          <span className="text-cyan-700 text-md md:w-[70%] w-[50%]">
             {totalExpense}
           </span>
         </div>

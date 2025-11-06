@@ -1,16 +1,31 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# CleanPro Tracker (Frontend)
 
-Currently, two official plugins are available:
+CleanPro Tracker is a lightweight inventory and expense tracking web application designed for small-scale manufacturers — specifically local cleaning product producers.
+It helps track production, sales, and expenses for each product using voice commands and provides easy-to-read dashboards for each product.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Features
 
-## React Compiler
+Core Functionalities
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Dashboard per product — (Liquid Soap, Floor Cleaner, Bleach, Glass Cleaner, Softener)
 
-## Expanding the ESLint configuration
+Voice-based input — record production, sales, or expenses by saying commands like:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+“Produced 20” or “Electricity bill 15”
+
+Expense tracking — records item description, amount, and date.
+
+Undo feature — allows deleting the latest production or sales record (quick correction).
+
+Authentication — simple secure login for the business owner.
+
+Persistent login — stays logged in using cookies until logout.
+
+Real-time updates — instantly reflects changes after adding or deleting records.
+
+Responsive UI — fully optimized for desktop and tablet.
+
+
+

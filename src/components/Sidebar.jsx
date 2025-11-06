@@ -5,6 +5,7 @@ import {
   FaGlassWhiskey,
   FaTint,
 } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
 import { LogOut } from "lucide-react";
 import { NavLink } from "react-router";
 import { MdClose } from "react-icons/md";
@@ -47,17 +48,14 @@ const products = [
 ];
 
 const Sidebar = ({ toggleSidebar }) => {
-
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     await logout();
-    navigate("/"); 
-    toast.success("Logout successful")
+    navigate("/");
+    toast.success("Logout successful");
   };
-
-
 
   return (
     <div className="h-screen w-64 bg-gray-100 border-r shadow-lg flex flex-col pt-8">
@@ -97,14 +95,21 @@ const Sidebar = ({ toggleSidebar }) => {
         ))}
       </div>
 
+      <NavLink to="/dashboard/home">
+        <div className="px-5 py-2 font-semibold text-[#223962] w-full cursor-pointer flex items-center gap-2 bg-blue-200">
+          <FaHome size={18} />
+          <span className="text-center text-[1.2rem]">Home</span>
+        </div>
+      </NavLink>
+
       <button
-      onClick={handleLogout}
-        className="flex items-center gap-2 w-full px-4 py-2 mt-4 text-red-500
+        onClick={handleLogout}
+        className="flex items-center gap-2 w-full px-4 py-2 text-red-500
              bg-red-50 hover:bg-red-100 rounded-lg font-semibold 
              transition-all duration-300 ease-in-out cursor-pointer"
       >
         <LogOut size={18} className="text-red-500" />
-        <span>Log Out</span>
+        <span>Leave</span>
       </button>
 
       {/* Footer */}
@@ -112,7 +117,7 @@ const Sidebar = ({ toggleSidebar }) => {
         © 2025 CleanPro Tracker
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Sidebar;
