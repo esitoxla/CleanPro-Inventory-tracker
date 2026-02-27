@@ -44,7 +44,7 @@ export default function HomePage() {
   return (
     <div className="p-6 min-h-screen">
       {/* Header */}
-      <h1 className="text-3xl font-bold text-[#223962] mb-6">Home</h1>
+      <h1 className="text-3xl font-bold text-[#223962] mb-6">Summary/Settings</h1>
 
       {/* Tabs */}
       <div className="flex gap-6 border-b border-gray-300 lg:w-[30%] md:w-[60%] w-full mb-6">

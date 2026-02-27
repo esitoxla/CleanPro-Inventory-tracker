@@ -97,8 +97,8 @@ const Sidebar = ({ toggleSidebar }) => {
 
       <NavLink to="/dashboard/home">
         <div className="px-5 py-2 font-semibold text-[#223962] w-full cursor-pointer flex items-center gap-2 bg-blue-200">
-          <FaHome size={18} />
-          <span className="text-center text-[1.2rem]">Home</span>
+          
+          <span className="text-center text-[1.2rem]">Summary/Settings</span>
         </div>
       </NavLink>
 

@@ -44,6 +44,7 @@ const LiquidSoap = () => {
   const totalSales = soapSales.reduce((a, b) => a + b.quantity, 0);
   const totalRemaining = Math.max(totalProduced - totalSales, 0);
 
+  //The .reduce() function is used to sum all the amounts.
   const totalExpense = soapExpenses
     .reduce((a, b) => a + Number(b.amount || 0), 0)
     .toFixed(2);

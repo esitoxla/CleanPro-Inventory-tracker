@@ -35,7 +35,7 @@ export default function LoginPage() {
     <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-cyan-200 via-pink-100 to-yellow-100 p-4">
       <div className="bg-white/80 backdrop-blur-md p-10 rounded-2xl shadow-2xl flex flex-col items-center gap-6 w-full max-w-md transition-transform transform hover:scale-[1.02]">
         <h1 className="text-5xl font-bold text-cyan-700 text-center animate-pulse">
-          Welcome ✨
+          Welcome !!!
         </h1>
         <p className="text-gray-600 text-center text-lg font-medium">
           Maame Esther, please enter your secret code to continue.
@@ -46,7 +46,7 @@ export default function LoginPage() {
           className="flex flex-col w-full gap-5 mt-2"
         >
           <input
-            type="text"
+            type="password"
             className="px-4 py-3 border-2 border-cyan-300 rounded-lg focus:outline-none focus:border-cyan-600 transition-all duration-300 text-lg text-gray-700 placeholder:text-gray-400"
             placeholder="Enter passcode"
             value={passcode}
