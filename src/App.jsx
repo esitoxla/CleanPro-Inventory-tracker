@@ -2,14 +2,12 @@ import { useState } from 'react'
 import { createBrowserRouter, RouterProvider } from "react-router";
 import './App.css'
 import Dashboard from './layout/Dashboard';
-import LiquidSoap from './components/LiquidSoap';
-import FloorCleaner from './components/FloorCleaner';
-import Bleach from './components/Bleach';
-import GlassCleaner from './components/GlassCleaner';
-import Softener from './components/Softener';
 import { Toaster } from 'react-hot-toast';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import RegisterPage from './pages/RegisterPage';
+import ProductDashboard from './pages/ProductDashboard';
+import ProductManagement from './pages/ProductManagement';
 
 function App() {
   const router = createBrowserRouter([
@@ -18,28 +16,20 @@ function App() {
       Component: LoginPage,
     },
     {
+      path: "/register",
+      Component: RegisterPage,
+    },
+    {
       path: "/dashboard",
       Component: Dashboard,
       children: [
         {
           index: true,
-          Component: LiquidSoap,
+          Component: ProductManagement,
         },
         {
-          path: "floor",
-          Component: FloorCleaner,
-        },
-        {
-          path: "bleach",
-          Component: Bleach,
-        },
-        {
-          path: "glass",
-          Component: GlassCleaner,
-        },
-        {
-          path: "softener",
-          Component: Softener,
+          path: "workspace",
+          Component: ProductDashboard,
         },
         {
           path: "home",

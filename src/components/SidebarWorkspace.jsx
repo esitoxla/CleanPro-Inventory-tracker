@@ -1,22 +1,12 @@
-import {
-  FaSoap,
-  FaPumpSoap,
-  FaSprayCan,
-  FaGlassWhiskey,
-  FaTint,
-} from "react-icons/fa";
-import { FaHome } from "react-icons/fa";
-import { LogOut } from "lucide-react";
-import { NavLink } from "react-router";
+import { LogOut, ArrowLeft } from "lucide-react";
+import { NavLink, useNavigate } from "react-router";
 import { MdClose } from "react-icons/md";
 import { AuthContext } from "../context/authContext";
 import { ProductContext } from "../context/ProductsContext";
 import { useContext } from "react";
-import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
 
-
-const Sidebar = ({ toggleSidebar }) => {
+const SidebarWorkspace = ({ toggleSidebar }) => {
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -30,32 +20,30 @@ const Sidebar = ({ toggleSidebar }) => {
   };
 
   return (
-    <div className="h-screen w-64 bg-gray-100 border-r shadow-lg flex flex-col pt-8">
-      {/* Close button (mobile only) */}
+    <div className="h-screen w-64 bg-gray-100 shadow-[8px_0_24px_-8px_rgba(0,0,0,0.15)] flex flex-col pt-8">
       <div className="md:hidden flex justify-end pr-4">
         <button onClick={toggleSidebar} className="text-2xl">
           <MdClose />
         </button>
       </div>
 
-      {/* Logo Section */}
-      <div className="flex gap-1 pl-6  py-6 text-2xl font-bold text-gray-700 border-b">
+      <div className="flex gap-1 pl-6 py-6 text-2xl font-bold text-gray-700 pb-6 shadow-[0_4px_12px_-6px_rgba(0,0,0,0.1)]">
         <div>
-          <span className="text-pink-500"> Clean</span>
-          <span className="text-cyan-500">Pro</span>
+          <span className="text-pink-500">Kora</span>
+          <span className="text-cyan-500">Wo</span>
         </div>
-        <span className="text-green-500">Tracker</span>
+        <span className="text-green-500">Adwuma</span>
       </div>
 
       <NavLink to="/dashboard" end>
-        <div className="px-5 py-2 font-semibold text-[#223962] w-full cursor-pointer flex items-center gap-2 bg-blue-200">
-          <span className="text-center text-[1.2rem]">Manage Products</span>
+        <div className="flex items-center gap-2 px-5 py-3 m-3 rounded-xl font-semibold text-gray-700 hover:bg-gray-200 transition-all">
+          <ArrowLeft size={16} />
+          <span>Manage Products</span>
         </div>
       </NavLink>
 
-      {/* Product Links */}
-      <div className="flex-1 overflow-y-auto mt-6">
-        {products.map((product, index) => (
+      <div className="flex-1 overflow-y-auto mt-2">
+        {products.map((product) => (
           <NavLink
             key={product.id}
             to="/dashboard/workspace"
@@ -77,28 +65,22 @@ const Sidebar = ({ toggleSidebar }) => {
         ))}
       </div>
 
-      <NavLink to="/dashboard/home">
-        <div className="px-5 py-2 font-semibold text-[#223962] w-full cursor-pointer flex items-center gap-2 bg-blue-200">
-          <span className="text-center text-[1.2rem]">Summary/Settings</span>
-        </div>
-      </NavLink>
-
       <button
         onClick={handleLogout}
-        className="flex items-center gap-2 w-full px-4 py-2 text-red-500
-             bg-red-50 hover:bg-red-100 rounded-lg font-semibold 
-             transition-all duration-300 ease-in-out cursor-pointer"
+        className="flex items-center justify-center gap-2 mx-3 mb-4 px-4 py-3
+       text-red-500 bg-red-50 hover:bg-red-100 rounded-xl font-semibold
+       border border-red-100 shadow-sm
+       transition-all duration-300 ease-in-out cursor-pointer"
       >
         <LogOut size={18} className="text-red-500" />
         <span>Leave</span>
       </button>
 
-      {/* Footer */}
-      <div className="text-center py-3 text-sm text-gray-700 border-t">
-        © 2025 CleanPro Tracker
+      <div className="text-center py-3 text-sm text-gray-700 mt-2 shadow-[0_-4px_12px_-6px_rgba(0,0,0,0.1)]">
+        © 2025 KoraWo Adwuma
       </div>
     </div>
   );
 };
 
-export default Sidebar;
+export default SidebarWorkspace;

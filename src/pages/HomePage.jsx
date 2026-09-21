@@ -31,7 +31,7 @@ export default function HomePage() {
       return toast.error("New passwords do not match");
 
     try {
-      await changePassword({ oldPassword, newPassword }); // call from context
+      await changePassword({ oldPassword, newPassword, confirmPassword }); // call from context
       toast.success("Password changed successfully!");
       setOldPassword("");
       setNewPassword("");

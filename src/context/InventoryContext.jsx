@@ -109,11 +109,11 @@ export default function InventoryProvider({ children }) {
   };
 
   // Fetch everything when the app loads
-  useEffect(() => {
-    fetchProducts();
-    fetchAllData();
-    fetchExpenseSummary();
-  }, []);
+  // useEffect(() => {
+  //   fetchProducts();
+  //   fetchAllData();
+  //   fetchExpenseSummary();
+  // }, []);
   return (
     <InventoryContext.Provider
       value={{

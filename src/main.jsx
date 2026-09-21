@@ -1,16 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import InventoryProvider from './context/InventoryContext.jsx'
-import { AuthProvider } from './context/authContext.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import AppProvider from "./providers/AppProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <InventoryProvider>
-        <App />
-      </InventoryProvider>
-    </AuthProvider>
-  </StrictMode>
+    <AppProvider>
+      <App />
+    </AppProvider>
+  </StrictMode>,
 );

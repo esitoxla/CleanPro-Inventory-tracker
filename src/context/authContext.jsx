@@ -7,6 +7,36 @@ export const AuthProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+
+  //register user
+  const registerUser = async (userData) => {
+    try {
+      const res = await api.post("/auth/register", userData);
+      setAuthUser(res.data.user);
+      return true;
+    } catch (error) {
+      console.error("Register error:", error);
+      return false;
+    }
+  };
+
+  // Login
+  const login = async (phoneNumber, password) => {
+    try {
+      const res = await api.post("/auth/login", {
+        phoneNumber,
+        password,
+      });
+
+      setAuthUser(res.data.user);
+      return true;
+    } catch (error) {
+      console.error("Login error:", error);
+      setAuthUser(null);
+      return false;
+    }
+  };
+
   // Fetch user (for persistent login)
   const fetchUser = async () => {
     try {
@@ -23,19 +53,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     fetchUser();
   }, []);
-
-  // Login
-  const login = async (password) => {
-    try {
-      const res = await api.post("/auth/login", { password });
-      setAuthUser(res.data.user);
-      return true;
-    } catch (error) {
-      console.error("Login error:", error);
-      setAuthUser(null);
-      return false;
-    }
-  };
 
   // Logout
   const logout = async () => {
@@ -63,6 +80,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         authUser,
         loading,
+        registerUser,
         login,
         logout,
         changePassword,
@@ -71,4 +89,4 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-};
+};;

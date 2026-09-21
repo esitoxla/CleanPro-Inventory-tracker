@@ -1,43 +1,47 @@
 import React from "react";
 import { FaMicrophone } from "react-icons/fa";
 import AddProductiveVoice from "./AddProductiveVoice";
-import { InventoryContext } from "../context/InventoryContext";
 import { useState, useContext } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import { format, isToday, isYesterday, isThisWeek } from "date-fns";
 import toast from "react-hot-toast";
 import { FaUndoAlt } from "react-icons/fa";
+import { ProductContext } from "../context/ProductsContext";
+import { ProductionContext } from "../context/ProductionsContext";
+import { SalesContext } from "../context/SalesContext";
+import { ExpenseContext } from "../context/ExpenseContext";
 
 const LiquidSoap = () => {
   const [showVoiceModal, setShowVoiceModal] = useState(false);
   const [recognizedText, setRecognizedText] = useState("");
   const [actionType, setActionType] = useState(""); // to know if it's for production, sales, or expense
 
+  const { products, selectedProduct } = useContext(ProductContext);
+
   const {
-    products,
     productions,
-    sales,
-    expenses,
-    addRecord,
-    deleteExpense,
-    deleteLatestRecord,
-    loading,
-  } = useContext(InventoryContext);
+    addProduction,
+    deleteLatestProduction,
+    loading: productionLoading,
+  } = useContext(ProductionContext);
 
-  const liquidSoap = products.find(
-    (p) => p.name?.toLowerCase() === "liquid soap"
-  );
+  const { sales, addSales, deleteLatestSales } = useContext(SalesContext);
 
-  if (loading) return <p>Loading...</p>;
-  if (!liquidSoap) return <p>Floor Cleaner not found.</p>;
+  const { expenses, addExpense, deleteExpense, deleteLatestExpense } =
+    useContext(ExpenseContext);
+
+  const currentProduct = selectedProduct;
+
+  if (productionLoading) return <p>Loading...</p>;
+  if (!currentProduct) return <p>No product selected.</p>;
 
   const soapProductions = productions.filter(
-    (p) => p.productId === liquidSoap?.id
+    (p) => p.productId === currentProduct.id,
   );
 
-  const soapSales = sales.filter((s) => s.productId === liquidSoap?.id);
+  const soapSales = sales.filter((s) => s.productId === currentProduct.id);
 
-  const soapExpenses = expenses.filter((e) => e.productId === liquidSoap?.id);
+  const soapExpenses = expenses.filter((e) => e.productId === currentProduct.id);
 
   //Compute Totals from the Fetched Data
   const totalProduced = soapProductions.reduce((a, b) => a + b.quantity, 0);
@@ -64,12 +68,12 @@ const LiquidSoap = () => {
       toast.error("Couldn't detect a number. Please try again.");
       return;
     }
-
+    //Production
     if (actionType === "production") {
       // Check if it's a production-related phrase
       if (lower.includes("produce") || lower.includes("produced")) {
         try {
-          await addRecord("production", {
+          await addProduction({
             productId: liquidSoap.id,
             quantity: amount,
           });
@@ -95,13 +99,13 @@ const LiquidSoap = () => {
           return;
         }
         try {
-          await addRecord("sales", {
+          await addSales({
             productId: liquidSoap.id,
             quantity: amount,
           });
         } catch (error) {
-          console.error("Error adding production:", error);
-          toast.error("Something went wrong while adding production.");
+          console.error("Error adding sales:", error);
+          toast.error("Something went wrong while adding sales.");
         }
       } else {
         // Handle when phrase doesn't mention production
@@ -115,7 +119,7 @@ const LiquidSoap = () => {
     if (actionType === "expense") {
       const description =
         lower.replace(/₵?\s?\d+/g, "").trim() || "Unnamed Expense";
-      await addRecord("expenses", {
+      await addExpense({
         productId: liquidSoap.id,
         description,
         amount,
@@ -160,7 +164,7 @@ const LiquidSoap = () => {
       {/* Header */}
       <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-2 justify-between bg-green-500 text-white px-6 py-4 rounded-xl shadow-md">
         <h1 className="md:text-2xl text-[1.4rem] font-bold">
-          Liquid Soap Dashboard
+          {currentProduct.name} Dashboard
         </h1>
         <p className="text-md italic ">
           Track your production and sales easily
@@ -177,7 +181,7 @@ const LiquidSoap = () => {
           <p className="text-sm text-gray-500">bottles</p>
 
           <button
-            onClick={() => deleteLatestRecord("production", liquidSoap.id)}
+            onClick={() => deleteLatestProduction(liquidSoap.id)}
             className="absolute top-4 right-4 text-green-500 hover:text-green-700"
             title="Undo last production"
           >
@@ -194,7 +198,7 @@ const LiquidSoap = () => {
           <p className="text-sm text-gray-500">bottles</p>
 
           <button
-            onClick={() => deleteLatestRecord("sales", liquidSoap.id)}
+            onClick={() => deleteLatestSales(liquidSoap.id)}
             className="absolute top-4 right-4 text-blue-500 hover:text-blue-700"
             title="Undo last sales"
           >

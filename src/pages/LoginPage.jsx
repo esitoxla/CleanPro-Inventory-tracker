@@ -1,69 +1,108 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import { Eye, EyeOff } from "lucide-react";
 import { AuthContext } from "../context/authContext";
 import toast from "react-hot-toast";
 
+
 export default function LoginPage() {
-  const [passcode, setPasscode] = useState("");
+  
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (!passcode) {
-      return toast.error("Please enter your passcode");
-    }
 
-    try {
-      const success = await login(passcode);
+ const handleSubmit = async (e) => {
+   e.preventDefault();
 
-       if (success) {
-         toast.success("Login successful");
-         navigate("/dashboard");
-       } else {
-         toast.error("Incorrect passcode");
-       }
-    } catch (error) {
-      console.error("Login failed:", error);
-      toast.error("Something went wrong. Please try again.");
-     
-    }
-  };
+   if (!phoneNumber) {
+     return toast.error("Please enter your phone number");
+   }
 
+   if (!password) {
+     return toast.error("Please enter your password");
+   }
+
+   try {
+     const success = await login(phoneNumber, password);
+
+     if (success) {
+       toast.success("Login successful");
+       navigate("/dashboard");
+     } else {
+       toast.error("Incorrect phone number or password");
+     }
+   } catch (error) {
+     console.error("Login failed:", error);
+     toast.error("Something went wrong. Please try again.");
+   }
+ };
+ 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-cyan-200 via-pink-100 to-yellow-100 p-4">
-      <div className="bg-white/80 backdrop-blur-md p-10 rounded-2xl shadow-2xl flex flex-col items-center gap-6 w-full max-w-md transition-transform transform hover:scale-[1.02]">
-        <h1 className="text-5xl font-bold text-cyan-700 text-center animate-pulse">
-          Welcome !!!
-        </h1>
-        <p className="text-gray-600 text-center text-lg font-medium">
-          Maame Esther, please enter your secret code to continue.
-        </p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 via-pink-200 to-yellow-200">
+      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
+        <div className="flex flex-col items-center justify-center gap-4">
+          <h1 className="text-5xl font-bold text-cyan-700 text-center">
+            Akwaaba !!!
+          </h1>
+          <p className="text-gray-600 text-center text-lg font-medium">
+            Please enter your phone number and password to continue.
+          </p>
+        </div>
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col w-full gap-5 mt-2"
+          className="flex flex-col w-full gap-5 mt-4"
         >
-          <input
-            type="password"
-            className="px-4 py-3 border-2 border-cyan-300 rounded-lg focus:outline-none focus:border-cyan-600 transition-all duration-300 text-lg text-gray-700 placeholder:text-gray-400"
-            placeholder="Enter passcode"
-            value={passcode}
-            onChange={(e) => setPasscode(e.target.value)}
-          />
+          <div>
+            <input
+              type="number"
+              className="w-full p-3 border rounded-lg focus:outline-cyan-500"
+              placeholder="Enter phone number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+          </div>
+
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              className="w-full p-3 pr-12 border rounded-lg focus:outline-cyan-500"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-cyan-600"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
 
           <button
             type="submit"
-            className="bg-gradient-to-r from-cyan-600 to-cyan-400 text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:from-cyan-500 hover:to-cyan-300 cursor-pointer"
+            className="w-full bg-cyan-600 text-white py-3 rounded-lg hover:bg-cyan-700 transition"
           >
             OK
           </button>
         </form>
 
+        <p className="text-sm text-gray-500 mt-6">
+          <NavLink to="register" className="text-cyan-600 cursor-pointer">
+            Sign up{" "}
+          </NavLink>
+          to get started
+        </p>
+
         <footer className="text-sm text-gray-500 mt-4">
           © {new Date().getFullYear()}
-          <span className="font-semibold"> CleanPro Tracker</span>. All rights
+          <span className="font-semibold"> KoraWo Adwuma</span>. All rights
           reserved.
         </footer>
       </div>
