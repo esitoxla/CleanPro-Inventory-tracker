@@ -42,7 +42,7 @@ export default function LoginPage() {
  };
  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 via-pink-200 to-yellow-200">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 via-pink-200 to-yellow-200 px-4 sm:px-0">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
         <div className="flex flex-col items-center justify-center gap-4">
           <h1 className="text-5xl font-bold text-cyan-700 text-center">
@@ -61,7 +61,7 @@ export default function LoginPage() {
             <input
               type="number"
               className="w-full p-3 border rounded-lg focus:outline-cyan-500"
-              placeholder="Enter phone number"
+              placeholder="Enter Phone Number"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
@@ -71,7 +71,7 @@ export default function LoginPage() {
             <input
               type={showPassword ? "text" : "password"}
               className="w-full p-3 pr-12 border rounded-lg focus:outline-cyan-500"
-              placeholder="Enter password"
+              placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

@@ -37,7 +37,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 via-pink-200 to-yellow-200">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 via-pink-200 to-yellow-200 px-4 sm:px-0">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
         <h1 className="text-3xl font-bold text-cyan-600 mb-4">
           Create Account
@@ -102,7 +102,11 @@ export default function RegisterPage() {
               type="button"
               onClick={() => setShowConfirmPassword((prev) => !prev)}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-cyan-600"
-              aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
+              aria-label={
+                showConfirmPassword
+                  ? "Hide confirm password"
+                  : "Show confirm password"
+              }
             >
               {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
@@ -118,7 +122,9 @@ export default function RegisterPage() {
 
         <p className="text-sm text-gray-500 mt-6">
           Already have an account?{" "}
-          <NavLink to="/" className="text-cyan-600 cursor-pointer">Login</NavLink>
+          <NavLink to="/" className="text-cyan-600 cursor-pointer">
+            Login
+          </NavLink>
         </p>
       </div>
     </div>
