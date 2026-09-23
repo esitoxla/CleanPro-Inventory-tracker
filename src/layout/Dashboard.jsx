@@ -94,10 +94,10 @@ export default function Dashboard() {
               type="button"
               aria-label="Profile"
               onClick={() => {}}
-              className={`relative z-30 ${profileButtonClass}`}
+              className={`relative z-30 min-w-0 max-md:shrink ${profileButtonClass}`}
             >
-              <CircleUserRound size={22} aria-hidden="true" />
-              <span className="hidden text-sm font-medium leading-tight sm:inline">
+              <CircleUserRound size={22} className="shrink-0" aria-hidden="true" />
+              <span className="min-w-0 truncate text-sm font-medium leading-tight">
                 {fullName}
               </span>
             </button>
