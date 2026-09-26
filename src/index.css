@@ -1,2 +1,6 @@
 @import "tailwindcss";
 
+/* Tailwind v4 uses prefers-color-scheme unless this variant is overridden.
+   Class strategy matches darkMode: "class" in tailwind.config.js. */
+@custom-variant dark (&:where(.dark, .dark *));
+

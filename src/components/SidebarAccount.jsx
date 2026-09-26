@@ -16,14 +16,14 @@ const SidebarAccount = ({ toggleSidebar }) => {
   };
 
   return (
-    <div className="h-screen w-64 bg-gray-100 shadow-[8px_0_24px_-8px_rgba(0,0,0,0.15)] flex flex-col pt-8">
+    <div className="h-screen w-64 bg-gray-100 shadow-[8px_0_24px_-8px_rgba(0,0,0,0.15)] flex flex-col pt-8 dark:bg-slate-800 dark:shadow-[8px_0_24px_-8px_rgba(0,0,0,0.45)]">
       <div className="md:hidden flex justify-end pr-4">
-        <button onClick={toggleSidebar} className="text-2xl">
+        <button onClick={toggleSidebar} className="text-2xl text-gray-700 dark:text-slate-100">
           <MdClose />
         </button>
       </div>
 
-      <div className="flex gap-1 pl-6 py-6 text-2xl font-bold text-gray-700 pb-6 shadow-[0_4px_12px_-6px_rgba(0,0,0,0.1)]">
+      <div className="flex gap-1 pl-6 py-6 text-2xl font-bold text-gray-700 pb-6 shadow-[0_4px_12px_-6px_rgba(0,0,0,0.1)] dark:text-slate-100 dark:shadow-[0_4px_12px_-6px_rgba(0,0,0,0.45)]">
         <div>
           <span className="text-pink-500">Kora</span>
           <span className="text-cyan-500">Wo</span>
@@ -38,7 +38,7 @@ const SidebarAccount = ({ toggleSidebar }) => {
               className={`px-5 py-3 m-3 rounded-xl font-semibold transition-all ${
                 isActive
                   ? "bg-cyan-500 text-white"
-                  : "text-gray-700 hover:bg-gray-200"
+                  : "text-gray-700 hover:bg-gray-200 dark:text-slate-100 dark:hover:bg-slate-700"
               }`}
             >
               Manage Products
@@ -52,7 +52,7 @@ const SidebarAccount = ({ toggleSidebar }) => {
               className={`px-5 py-3 m-3 rounded-xl font-semibold transition-all ${
                 isActive
                   ? "bg-cyan-500 text-white"
-                  : "text-gray-700 hover:bg-gray-200"
+                  : "text-gray-700 hover:bg-gray-200 dark:text-slate-100 dark:hover:bg-slate-700"
               }`}
             >
               Summary/Settings
@@ -66,13 +66,14 @@ const SidebarAccount = ({ toggleSidebar }) => {
         className="flex items-center justify-center gap-2 mx-3 mb-4 px-4 py-3
        text-red-500 bg-red-50 hover:bg-red-100 rounded-xl font-semibold
        border border-red-100 shadow-sm
-       transition-all duration-300 ease-in-out cursor-pointer"
+       transition-all duration-300 ease-in-out cursor-pointer
+       dark:bg-red-950/40 dark:text-red-400 dark:border-red-900/40 dark:hover:bg-red-950/50"
       >
-        <LogOut size={18} className="text-red-500" />
+        <LogOut size={18} className="text-red-500 dark:text-red-400" />
         <span>Leave</span>
       </button>
 
-      <div className="text-center py-3 text-sm text-gray-700 mt-2 shadow-[0_-4px_12px_-6px_rgba(0,0,0,0.1)]">
+      <div className="text-center py-3 text-sm text-gray-700 mt-2 shadow-[0_-4px_12px_-6px_rgba(0,0,0,0.1)] dark:text-slate-400 dark:shadow-[0_-4px_12px_-6px_rgba(0,0,0,0.45)]">
         © 2025 KoraWo Adwuma
       </div>
     </div>

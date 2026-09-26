@@ -42,13 +42,13 @@ export default function LoginPage() {
  };
  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 via-pink-200 to-yellow-200 px-4 sm:px-0">
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 via-pink-200 to-yellow-200 px-4 sm:px-0 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center dark:bg-slate-800 dark:border dark:border-slate-700">
         <div className="flex flex-col items-center justify-center gap-4">
           <h1 className="text-5xl font-bold text-cyan-700 text-center">
             Akwaaba !!!
           </h1>
-          <p className="text-gray-600 text-center text-lg font-medium">
+          <p className="text-gray-600 text-center text-lg font-medium dark:text-slate-400">
             Please enter your phone number and password to continue.
           </p>
         </div>
@@ -60,7 +60,7 @@ export default function LoginPage() {
           <div>
             <input
               type="number"
-              className="w-full p-3 border rounded-lg focus:outline-cyan-500"
+              className="w-full p-3 border border-gray-200 rounded-lg focus:outline-cyan-500 bg-white dark:bg-slate-900 dark:text-slate-100 dark:border-slate-700 dark:placeholder:text-slate-500"
               placeholder="Enter Phone Number"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
@@ -70,7 +70,7 @@ export default function LoginPage() {
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
-              className="w-full p-3 pr-12 border rounded-lg focus:outline-cyan-500"
+              className="w-full p-3 pr-12 border border-gray-200 rounded-lg focus:outline-cyan-500 bg-white dark:bg-slate-900 dark:text-slate-100 dark:border-slate-700 dark:placeholder:text-slate-500"
               placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -78,7 +78,7 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-cyan-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-cyan-600 dark:text-slate-400"
               aria-label={showPassword ? "Hide password" : "Show password"}
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -93,14 +93,14 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="text-sm text-gray-500 mt-6">
+        <p className="text-sm text-gray-500 mt-6 dark:text-slate-400">
           <NavLink to="register" className="text-cyan-600 cursor-pointer">
             Sign up{" "}
           </NavLink>
           to get started
         </p>
 
-        <footer className="text-sm text-gray-500 mt-4">
+        <footer className="text-sm text-gray-500 mt-4 dark:text-slate-400">
           © {new Date().getFullYear()}
           <span className="font-semibold"> KoraWo Adwuma</span>. All rights
           reserved.

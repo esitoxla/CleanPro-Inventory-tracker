@@ -56,7 +56,7 @@ export default function AddProductiveVoice({ onClose, onResult }) {
 
   return (
     <div className="fixed inset-0 bg-black/20 backdrop-blur-xs flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-2xl shadow-xl flex flex-col items-center gap-3 md:w-[50%]">
+      <div className="bg-white p-6 rounded-2xl shadow-xl flex flex-col items-center gap-3 md:w-[50%] dark:bg-slate-800 dark:border dark:border-slate-700">
         {/* Google-style voice wave animation */}
         <div className="flex items-end justify-center gap-1 h-10">
           <span
@@ -89,13 +89,13 @@ export default function AddProductiveVoice({ onClose, onResult }) {
           ></span>
         </div>  
 
-        <p className="text-gray-700 font-semibold">Listening...</p>
-        <p className="text-sm text-gray-500 italic">
+        <p className="text-gray-700 font-semibold dark:text-slate-100">Listening...</p>
+        <p className="text-sm text-gray-500 italic dark:text-slate-400">
           Please speak your details clearly
         </p>
         <button
           onClick={onClose}
-          className="mt-3 bg-gray-200 px-3 py-1 rounded-lg text-sm"
+          className="mt-3 bg-gray-200 px-3 py-1 rounded-lg text-sm text-gray-700 dark:bg-slate-700 dark:text-slate-100"
         >
           Cancel
         </button>

@@ -1,9 +1,9 @@
 export const productTextColors = {
-  "Liquid Soap": "text-green-600",
-  "Floor Cleaner": "text-blue-600",
-  Bleach: "text-yellow-600",
-  "Glass Cleaner": "text-cyan-600",
-  Softener: "text-pink-600",
+  "Liquid Soap": "text-green-600 dark:text-green-400",
+  "Floor Cleaner": "text-blue-600 dark:text-blue-400",
+  Bleach: "text-yellow-600 dark:text-yellow-300",
+  "Glass Cleaner": "text-cyan-600 dark:text-cyan-400",
+  Softener: "text-pink-600 dark:text-pink-400",
 };
 
 //productTextColors[item.product]

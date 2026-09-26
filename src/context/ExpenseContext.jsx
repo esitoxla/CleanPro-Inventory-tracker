@@ -17,7 +17,7 @@ export const ExpenseProvider = ({ children }) => {
       setLoading(true);
       const res = await api.get("/expenses");
 
-      setExpenses(res.data.expenses || []);
+      setExpenses(res.data.data || []);
     } catch (error) {
       console.error("Error fetching expenses:", error);
       toast.error("Failed to load expenses data");
@@ -32,7 +32,7 @@ export const ExpenseProvider = ({ children }) => {
       const res = await api.post("/expenses", payload);
 
       // Optimistic update (add to top)
-      setExpenses((prev) => [res.data.expense, ...prev]);
+      setExpenses((prev) => [res.data.data, ...prev]);
 
       toast.success("Expenses recorded");
     } catch (error) {
@@ -47,7 +47,9 @@ export const ExpenseProvider = ({ children }) => {
       await api.delete(`/expenses/${productId}/${expenseId}`);
 
       // Remove it from the local state
-      setExpenses((prev) => prev.filter((expense) => expense.id !== expenseId));
+      setExpenses((prev) =>
+        prev.filter((expense) => expense && expense.id !== expenseId),
+      );
 
       toast.success("Expense deleted successfully");
     } catch (error) {

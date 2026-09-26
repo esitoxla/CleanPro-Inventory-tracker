@@ -37,13 +37,13 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 via-pink-200 to-yellow-200 px-4 sm:px-0">
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 via-pink-200 to-yellow-200 px-4 sm:px-0 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center dark:bg-slate-800 dark:border dark:border-slate-700">
         <h1 className="text-3xl font-bold text-cyan-600 mb-4">
           Create Account
         </h1>
 
-        <p className="text-gray-600 mb-6">
+        <p className="text-gray-600 mb-6 dark:text-slate-400">
           Fill in your details to get started
         </p>
 
@@ -53,7 +53,7 @@ export default function RegisterPage() {
             name="firstName"
             placeholder="First Name"
             onChange={handleChange}
-            className="w-full p-3 border rounded-lg focus:outline-cyan-500"
+            className="w-full p-3 border border-gray-200 rounded-lg focus:outline-cyan-500 bg-white dark:bg-slate-900 dark:text-slate-100 dark:border-slate-700 dark:placeholder:text-slate-500"
           />
 
           <input
@@ -61,7 +61,7 @@ export default function RegisterPage() {
             name="lastName"
             placeholder="Last Name"
             onChange={handleChange}
-            className="w-full p-3 border rounded-lg focus:outline-cyan-500"
+            className="w-full p-3 border border-gray-200 rounded-lg focus:outline-cyan-500 bg-white dark:bg-slate-900 dark:text-slate-100 dark:border-slate-700 dark:placeholder:text-slate-500"
           />
 
           <input
@@ -69,7 +69,7 @@ export default function RegisterPage() {
             name="phoneNumber"
             placeholder="Phone Number"
             onChange={handleChange}
-            className="w-full p-3 border rounded-lg focus:outline-cyan-500"
+            className="w-full p-3 border border-gray-200 rounded-lg focus:outline-cyan-500 bg-white dark:bg-slate-900 dark:text-slate-100 dark:border-slate-700 dark:placeholder:text-slate-500"
           />
 
           <div className="relative">
@@ -78,12 +78,12 @@ export default function RegisterPage() {
               name="password"
               placeholder="Password"
               onChange={handleChange}
-              className="w-full p-3 pr-12 border rounded-lg focus:outline-cyan-500"
+              className="w-full p-3 pr-12 border border-gray-200 rounded-lg focus:outline-cyan-500 bg-white dark:bg-slate-900 dark:text-slate-100 dark:border-slate-700 dark:placeholder:text-slate-500"
             />
             <button
               type="button"
               onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-cyan-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-cyan-600 dark:text-slate-400"
               aria-label={showPassword ? "Hide password" : "Show password"}
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -96,12 +96,12 @@ export default function RegisterPage() {
               name="confirmPassword"
               placeholder="Confirm Password"
               onChange={handleChange}
-              className="w-full p-3 pr-12 border rounded-lg focus:outline-cyan-500"
+              className="w-full p-3 pr-12 border border-gray-200 rounded-lg focus:outline-cyan-500 bg-white dark:bg-slate-900 dark:text-slate-100 dark:border-slate-700 dark:placeholder:text-slate-500"
             />
             <button
               type="button"
               onClick={() => setShowConfirmPassword((prev) => !prev)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-cyan-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-cyan-600 dark:text-slate-400"
               aria-label={
                 showConfirmPassword
                   ? "Hide confirm password"
@@ -120,7 +120,7 @@ export default function RegisterPage() {
           </button>
         </form>
 
-        <p className="text-sm text-gray-500 mt-6">
+        <p className="text-sm text-gray-500 mt-6 dark:text-slate-400">
           Already have an account?{" "}
           <NavLink to="/" className="text-cyan-600 cursor-pointer">
             Login
